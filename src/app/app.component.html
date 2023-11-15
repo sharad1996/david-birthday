@@ -1,39 +1,27 @@
-<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
-<!-- * * * * * * * * * * * The content below * * * * * * * * * * * -->
-<!-- * * * * * * * * * * is only a placeholder * * * * * * * * * * -->
-<!-- * * * * * * * * * * and can be replaced.  * * * * * * * * * * -->
-<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
-<!-- * * * * * * * * * Delete the template below * * * * * * * * * -->
-<!-- * * * * * * * to get started with your project! * * * * * * * -->
-<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
-
-<style></style>
-
-<main class="main">
-  <div>Hello World !!!</div>
-  <mat-form-field>
-    <mat-label>Input</mat-label>
-    <input matInput />
-  </mat-form-field>
-  <mat-form-field>
-    <mat-label>Select</mat-label>
-    <mat-select>
-      <mat-option value="one">First option</mat-option>
-      <mat-option value="two">Second option</mat-option>
-    </mat-select>
-  </mat-form-field>
-  <mat-form-field>
-    <mat-label>Textarea</mat-label>
-    <textarea matInput></textarea>
-  </mat-form-field>
-</main>
-
-<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
-<!-- * * * * * * * * * * * The content above * * * * * * * * * * * * -->
-<!-- * * * * * * * * * * is only a placeholder * * * * * * * * * * * -->
-<!-- * * * * * * * * * * and can be replaced.  * * * * * * * * * * * -->
-<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
-<!-- * * * * * * * * * * End of Placeholder  * * * * * * * * * * * * -->
-<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
+<form (ngSubmit)="onSubmit()" #heroForm="ngForm">
+  <!-- First Name -->
+  <div class="form-group">
+    <label for="fName">Name</label>
+    <input
+      type="text"
+      class="form-control"
+      id="fName"
+      required
+      [(ngModel)]="model.fName"
+      name="fName"
+      #fName="ngModel"
+    />
+    <div [hidden]="name.valid || name.pristine" class="alert alert-danger">
+      Name is required
+    </div>
+  </div>
+  <button
+    type="submit"
+    class="btn btn-success"
+    [disabled]="!heroForm.form.valid"
+  >
+    Submit
+  </button>
+</form>
 
 <router-outlet></router-outlet>
