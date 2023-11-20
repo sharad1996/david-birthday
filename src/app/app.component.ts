@@ -9,6 +9,8 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { MatButtonModule } from '@angular/material/button';
 import { FormsModule } from '@angular/forms';
 import { User } from './User';
+import { HttpClientModule } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-root',
@@ -23,17 +25,20 @@ import { User } from './User';
     MatNativeDateModule,
     MatButtonModule,
     FormsModule,
+    HttpClientModule,
   ],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
+  data: any;
   public title = 'david-birthday';
-  public firstName: string = '';
-  public lastName: string = '';
+  public fName: string = '';
+  public lName: string = '';
   public city: string = '';
   public date: string = '';
   public country?: string = '';
+
   name = '';
   countries = [
     'Afghanistan',
@@ -47,5 +52,26 @@ export class AppComponent {
 
   onSubmit(values: any) {
     console.log('=============>>>>>>>>>>>>>>>', values, this.model);
+  }
+  private apiUrl = 'http://192.168.1.19:8081/v1/users'; // Replace with your API URL
+
+  constructor(private http: HttpClient) {}
+
+  ngOnInit(): void {
+    this.http.get(this.apiUrl).subscribe(
+      (response) => {
+        this.data = response;
+        console.log('API Data:', this.data);
+      },
+      (error) => {
+        console.error('Error fetching data:', error);
+      }
+    );
+  }
+
+  getUserForm(data: any) {
+    this.http.post(this.apiUrl, data).subscribe((result) => {
+      console.log(result);
+    });
   }
 }

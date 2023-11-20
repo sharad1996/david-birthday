@@ -1,7 +1,7 @@
-<form (ngSubmit)="onSubmit()" #heroForm="ngForm">
+<form #heroForm="ngForm" (ngSubmit)="getUserForm(heroForm.value)">
   <!-- First Name -->
   <div class="form-group">
-    <label for="fName">Name</label>
+    <label for="fName">First Name</label>
     <input
       type="text"
       class="form-control"
@@ -11,9 +11,36 @@
       name="fName"
       #fName="ngModel"
     />
-    <div [hidden]="name.valid || name.pristine" class="alert alert-danger">
-      Name is required
-    </div>
+    <label for="lName">Last Name</label>
+    <input
+      type="text"
+      class="form-control"
+      id="lName"
+      required
+      [(ngModel)]="model.lName"
+      name="lName"
+      #lName="ngModel"
+    />
+    <!-- <input
+      type="text"
+      class="form-control"
+      id="fName"
+      required
+      [(ngModel)]="model.fName"
+      name="fName"
+      #fName="ngModel"
+    /> -->
+    <label for="city">City</label>
+    <input
+      type="text"
+      class="form-control"
+      id="city"
+      required
+      [(ngModel)]="model.city"
+      name="city"
+      #city="ngModel"
+    />
+    <div class="alert alert-danger">Name is required</div>
   </div>
   <button
     type="submit"
