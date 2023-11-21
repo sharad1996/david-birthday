@@ -5,5 +5,5 @@ import { HomeComponent } from './home/home.component';
 export const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' }, //default route
   { path: 'home', component: HomeComponent },
-  { path: 'birth', component: BirthdayViewComponent },
+  { path: 'birth/:id', component: BirthdayViewComponent },
 ];

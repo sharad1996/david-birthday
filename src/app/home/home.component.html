@@ -1,1 +1,128 @@
-<p>home works!</p>
+<div class="container-fluid py-3">
+  <div class="row">
+    <div class="col-md-6">
+      <div class="row justify-content-center">
+        <div class="col-md-12">
+          <span class="anchor" id="formLogin"></span>
+          <!-- form card login -->
+          <div class="card card-outline-secondary">
+            <div class="card-header">
+              <h3 class="mb-0">Birthday Form</h3>
+            </div>
+            <div class="card-body">
+              <form #userForm="ngForm" (ngSubmit)="getUserForm(userForm.value)">
+                <!-- First Name -->
+                <div class="form-group">
+                  <label for="fName">First Name</label>
+                  <input
+                    type="text"
+                    [class.error]="hasError && model.fName === ''"
+                    class="form-control mb-3"
+                    id="fName"
+                    value="model"
+                    [(ngModel)]="model.fName"
+                    name="fName"
+                    #fName="ngModel"
+                  />
+                  <label for="lName">Last Name</label>
+                  <input
+                    type="text"
+                    [class.error]="hasError && model.lName === ''"
+                    class="form-control mb-3"
+                    id="lName"
+                    required
+                    ngModel
+                    [(ngModel)]="model.lName"
+                    name="lName"
+                    #lName="ngModel"
+                  />
+                  <label for="date">Date</label>
+                  <input
+                    type="date"
+                    [class.error]="hasError && model.date === ''"
+                    class="form-control mb-3"
+                    id="date"
+                    required
+                    ngModel
+                    [(ngModel)]="model.date"
+                    name="date"
+                    #date="ngModel"
+                  />
+
+                  <div class="form-group">
+                    <label for="exampleFormControlSelect1">Country</label>
+                    <select
+                      ngModel
+                      id="country"
+                      [class.error]="hasError && model.country === ''"
+                      required
+                      name="country"
+                      [(ngModel)]="model.country"
+                      #country="ngModel"
+                      class="form-control mb-3"
+                      id="exampleFormControlSelect1"
+                    >
+                      <option value="" disabled>Select an option</option>
+                      <option *ngFor="let option of countries" [value]="option">
+                        {{ option }}
+                      </option>
+                    </select>
+                  </div>
+
+                  <label for="city">City</label>
+                  <input
+                    type="text"
+                    [class.error]="hasError && model.city === ''"
+                    class="form-control"
+                    id="city"
+                    required
+                    ngModel
+                    name="city"
+                    #city="ngModel"
+                    [(ngModel)]="model.city"
+                  />
+                </div>
+                <button type="submit" class="btn btn-success w-100">
+                  Submit
+                </button>
+              </form>
+            </div>
+            <!--/card-block-->
+          </div>
+          <!-- /form card login -->
+        </div>
+      </div>
+
+      <!--/row-->
+    </div>
+
+    <!--/col-->
+    <div class="col-md-6">
+      <div *ngFor="let item of data" class="mb-3 card card-outline-secondary">
+        <div class="card" (click)="navigateToBirth(item._id)">
+          <div class="card-body d-flex">
+            <img
+              class="card-img-top img-fluid profile-image mr-2"
+              src="https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__340.jpg"
+              alt="Card image cap"
+              style="height: '200px'"
+            />
+            <div>
+              <p class="card-title">{{ item.fName }} {{ item.lName }}</p>
+              <p class="card-text">
+                {{ item.city }}
+                {{ item.country }}
+              </p>
+              <p class="card-text">Birthday: {{ item.date }}</p>
+            </div>
+          </div>
+        </div>
+
+        <!--/row-->
+      </div>
+    </div>
+    <!--/row-->
+  </div>
+
+  <!--/container-->
+</div>
