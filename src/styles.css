@@ -47,3 +47,12 @@ label {
   font-size: 12px;
   margin-bottom: 2px !important;
 }
+
+.card {
+  cursor: pointer;
+}
+
+.list-data {
+  height: 700px;
+  overflow-y: scroll;
+}

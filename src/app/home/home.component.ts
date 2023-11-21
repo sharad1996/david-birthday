@@ -48,16 +48,25 @@ export class HomeComponent {
     );
   }
 
-  // getAllData(id: number) {
-  //   console.log(id);
-  // }
-
   navigateToBirth(id: number) {
-    console.log(id, '//////id');
     this.router.navigate([`/birth/${id}`]);
   }
 
+  // Calculate age for user
+  ageCalculator(dob: string) {
+    const today = new Date();
+    const birthDate = new Date(dob);
+    let ageNow = today.getFullYear() - birthDate.getFullYear();
+    let m = today.getMonth() - birthDate.getMonth();
+    if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+      ageNow--;
+    }
+
+    return ageNow;
+  }
+
   getUserForm(data: any) {
+    // All fields should not be empty
     if (
       data.fName === '' ||
       data.lName === '' ||
@@ -69,11 +78,21 @@ export class HomeComponent {
     } else {
       this.hasError = false;
     }
-    this.http
-      .post('http://localhost:8082/v1/users/create', data)
-      .subscribe((result) => {
+
+    // checking year should be 18 years above
+    if (this.ageCalculator(data.date) < 18) {
+      alert('Age Should be greater than 18');
+      return;
+    }
+
+    this.http.post('http://localhost:8082/v1/users/create', data).subscribe(
+      (result) => {
         console.log(result);
         this.ngOnInit();
-      });
+      },
+      (error) => {
+        alert(error.error.message);
+      }
+    );
   }
 }

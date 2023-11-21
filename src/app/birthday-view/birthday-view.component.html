@@ -1,13 +1,15 @@
-<div class="card-body">
+<div class="container mt-3">
   <img
     class="card-img-top img-fluid mr-2"
-    src="https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__340.jpg"
+    src="../../assets/birthday.jpeg"
     alt="Card image cap"
-    style="height: 200px"
   />
-  <div>
-    <p class="card-title">Full Name:</p>
-    <p class="card-text">BirthDate:</p>
-    <p class="card-text">Country:</p>
+
+  <div class="mt-3">
+    <h3 class="card-title">
+      <b>Full Name: </b>{{ data.fName }} {{ data.lName }}
+    </h3>
+    <h3 class="card-text"><b>BirthDate: </b> {{ data.date }}</h3>
+    <h3 class="card-text"><b>Country:</b> {{ data.country }}</h3>
   </div>
 </div>
