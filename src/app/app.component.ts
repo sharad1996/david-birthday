@@ -45,7 +45,8 @@ export class AppComponent {
     'Albania',
     // Add more countries as needed
   ];
-  model = new User('18');
+  error = '';
+  model = new User();
 
   private apiUrl = 'http://localhost:8082/v1/users'; // Replace with your API URL
 
@@ -64,10 +65,23 @@ export class AppComponent {
   }
 
   getUserForm(data: any) {
+    if (
+      data.fName === '' ||
+      data.lName === '' ||
+      data.date === '' ||
+      data.city === ''
+    ) {
+      this.error = 'All fields are  required !!!';
+      return;
+    } else {
+      this.error = '';
+    }
+    debugger;
     this.http
       .post('http://localhost:8082/v1/users/create', data)
       .subscribe((result) => {
         console.log(result);
+        this.model = new User('');
         this.ngOnInit();
       });
   }

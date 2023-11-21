@@ -10,10 +10,6 @@
               <h3 class="mb-0">Birthday Form</h3>
             </div>
             <div class="card-body">
-              <!-- <div *ngIf="data">
-                <div class="alert alert-success">Name is required</div>
-              </div> -->
-
               <form #userForm="ngForm" (ngSubmit)="getUserForm(userForm.value)">
                 <!-- First Name -->
                 <div class="form-group">
@@ -23,10 +19,12 @@
                     class="form-control"
                     id="fName"
                     required
-                    ngModel
+                    value="model"
+                    [(ngModel)]="model.fName"
                     name="fName"
                     #fName="ngModel"
                   />
+                  <!-- Last Name -->
                   <label for="lName">Last Name</label>
                   <input
                     type="text"
@@ -34,9 +32,11 @@
                     id="lName"
                     required
                     ngModel
+                    [(ngModel)]="model.lName"
                     name="lName"
                     #lName="ngModel"
                   />
+                  <!-- DOB -->
                   <label for="date">Date</label>
                   <input
                     type="text"
@@ -44,9 +44,11 @@
                     id="date"
                     required
                     ngModel
+                    [(ngModel)]="model.date"
                     name="date"
                     #date="ngModel"
                   />
+                  <!-- Country Name -->
                   <label for="country">Country</label>
                   <input
                     type="text"
@@ -55,8 +57,10 @@
                     required
                     ngModel
                     name="country"
+                    [(ngModel)]="model.country"
                     #country="ngModel"
                   />
+                  <!-- City Name -->
                   <label for="city">City</label>
                   <input
                     type="text"
@@ -66,9 +70,11 @@
                     ngModel
                     name="city"
                     #city="ngModel"
+                    [(ngModel)]="model.city"
                   />
                 </div>
                 <button type="submit" class="btn btn-success">Submit</button>
+                <div class="error" *ngIf="error !== ''">{{ error }}</div>
               </form>
             </div>
             <!--/card-block-->
