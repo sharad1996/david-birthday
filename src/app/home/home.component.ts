@@ -5,13 +5,31 @@ import { HttpClientModule } from '@angular/common/http';
 import { HttpClient } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatSelectModule } from '@angular/material/select';
+import { MatCardModule } from '@angular/material/card';
+import { MatButtonModule } from '@angular/material/button';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [CommonModule, HttpClientModule, FormsModule],
+  imports: [
+    CommonModule,
+    HttpClientModule,
+    FormsModule,
+    MatInputModule,
+    MatFormFieldModule,
+    MatSelectModule,
+    MatCardModule,
+    MatButtonModule,
+    MatDatepickerModule,
+  ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css',
+  providers: [DatePipe],
 })
 export class HomeComponent {
   data: any;
@@ -34,7 +52,11 @@ export class HomeComponent {
 
   private apiUrl = 'http://localhost:8082/v1/users'; // Replace with your API URL
 
-  constructor(private http: HttpClient, private router: Router) {}
+  constructor(
+    private http: HttpClient,
+    private router: Router,
+    private datePipe: DatePipe
+  ) {}
 
   ngOnInit(): void {
     this.http.get(this.apiUrl).subscribe(
@@ -94,5 +116,10 @@ export class HomeComponent {
         alert(error.error.message);
       }
     );
+  }
+  // Method to convert the date format
+  formatDateString(dateString: string): string {
+    const parsedDate = new Date(dateString);
+    return this.datePipe.transform(parsedDate, 'dd-MM-yyyy') || '';
   }
 }
