@@ -45,8 +45,8 @@ export class AppComponent {
     'Albania',
     // Add more countries as needed
   ];
-  error = '';
-  model = new User();
+  hasError = false;
+  model = new User('', '', '', '', '');
 
   private apiUrl = 'http://localhost:8082/v1/users'; // Replace with your API URL
 
@@ -71,12 +71,12 @@ export class AppComponent {
       data.date === '' ||
       data.city === ''
     ) {
-      this.error = 'All fields are  required !!!';
+      this.hasError = true;
       return;
     } else {
-      this.error = '';
+      this.hasError = false;
     }
-    debugger;
+
     this.http
       .post('http://localhost:8082/v1/users/create', data)
       .subscribe((result) => {

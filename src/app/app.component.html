@@ -16,6 +16,7 @@
                   <label for="fName">First Name</label>
                   <input
                     type="text"
+                    [class.error]="hasError && model.fName === ''"
                     class="form-control"
                     id="fName"
                     required
@@ -28,6 +29,7 @@
                   <label for="lName">Last Name</label>
                   <input
                     type="text"
+                    [class.error]="hasError && model.lName === ''"
                     class="form-control"
                     id="lName"
                     required
@@ -40,6 +42,7 @@
                   <label for="date">Date</label>
                   <input
                     type="text"
+                    [class.error]="hasError && model.date === ''"
                     class="form-control"
                     id="date"
                     required
@@ -52,6 +55,7 @@
                   <label for="country">Country</label>
                   <input
                     type="text"
+                    [class.error]="hasError && model.country === ''"
                     class="form-control"
                     id="country"
                     required
@@ -64,6 +68,7 @@
                   <label for="city">City</label>
                   <input
                     type="text"
+                    [class.error]="hasError && model.city === ''"
                     class="form-control"
                     id="city"
                     required
@@ -74,7 +79,6 @@
                   />
                 </div>
                 <button type="submit" class="btn btn-success">Submit</button>
-                <div class="error" *ngIf="error !== ''">{{ error }}</div>
               </form>
             </div>
             <!--/card-block-->
