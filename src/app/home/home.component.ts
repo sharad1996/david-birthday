@@ -87,7 +87,7 @@ export class HomeComponent {
 
     this.http.post('http://localhost:8082/v1/users/create', data).subscribe(
       (result) => {
-        console.log(result);
+        this.model = new User('', '', '', '', '');
         this.ngOnInit();
       },
       (error) => {
