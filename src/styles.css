@@ -1,4 +1,49 @@
-/* You can add global styles to this file, and also import other style files */
+/* my-form.component.css */
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+/* Style for form container */
+.form-container {
+  max-width: 400px;
+  margin: auto;
+}
+
+/* Style for form inputs */
+.form-group {
+  margin-bottom: 15px;
+}
+
+/* Style for error message */
+.alert-danger {
+  color: #721c24;
+  background-color: #f8d7da;
+  border-color: #f5c6cb;
+  padding: 8px;
+  border-radius: 4px;
+  margin-top: 5px;
+}
+
+/* Style for the submit button */
+.btn-success {
+  background-color: #28a745;
+  color: #fff;
+}
+
+/* Optional: Add some spacing between form elements */
+label {
+  margin-bottom: 5px;
+}
+
+.profile-image {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}
+
+.card-title {
+  margin-bottom: 2px !important;
+  font-size: 10px;
+}
+
+.card-text {
+  font-size: 12px;
+  margin-bottom: 2px !important;
+}

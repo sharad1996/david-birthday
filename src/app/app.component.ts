@@ -37,7 +37,7 @@ export class AppComponent {
   public lName: string = '';
   public city: string = '';
   public date: string = '';
-  public country?: string = '';
+  public country: string = '';
 
   name = '';
   countries = [
@@ -47,21 +47,15 @@ export class AppComponent {
   ];
   model = new User('18');
 
-  // constructor(
-  // ) {}
-
-  onSubmit(values: any) {
-    console.log('=============>>>>>>>>>>>>>>>', values, this.model);
-  }
-  private apiUrl = 'http://192.168.1.19:8081/v1/users'; // Replace with your API URL
+  private apiUrl = 'http://localhost:8082/v1/users'; // Replace with your API URL
 
   constructor(private http: HttpClient) {}
 
   ngOnInit(): void {
     this.http.get(this.apiUrl).subscribe(
-      (response) => {
-        this.data = response;
-        console.log('API Data:', this.data);
+      (response: any) => {
+        this.data = response.result;
+        console.log('API Data:', response.result);
       },
       (error) => {
         console.error('Error fetching data:', error);
@@ -70,8 +64,11 @@ export class AppComponent {
   }
 
   getUserForm(data: any) {
-    this.http.post(this.apiUrl, data).subscribe((result) => {
-      console.log(result);
-    });
+    this.http
+      .post('http://localhost:8082/v1/users/create', data)
+      .subscribe((result) => {
+        console.log(result);
+        this.ngOnInit();
+      });
   }
 }
